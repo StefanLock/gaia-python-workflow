@@ -3,13 +3,10 @@ from gaiasdk import sdk
 import logging
 from jinja2 import Environment, FileSystemLoader
 import yaml
-from os import system
+import os
 
 def get_template(env):
-    ls = system("ls")
-    pwd = system("pwd")
-    logging.info(ls)
-    logging.info(pwd)
+    os.listdir()
 
     ## Open up our yaml file which will map any services depending on the environment.
     with open('envConfigValues.yaml', 'r') as file:
