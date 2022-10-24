@@ -5,7 +5,7 @@ import logging
 
 def get_template(env):
 
-    env = env.key
+    logging.info(env)
 
     mylist = f"""
         monitoring-server: {env}-grafana.com
