@@ -8,5 +8,5 @@ setup(name='testpipeline',
       install_requires=[
             'gaiasdk',
             'Jinja2',
-            'yaml'
+            'PyYAML'
       ])
