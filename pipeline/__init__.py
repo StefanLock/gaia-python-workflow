@@ -1,4 +1,4 @@
-from os import system
+import os
 from gaiasdk import sdk
 
 import logging
@@ -22,7 +22,8 @@ def get_template(env):
         logging.error("Failed to create config")
         exit(1)
 
-    test = system("cat config.yaml")
+    test = os.popen('cat /etc/services').read()
+    print(test)
     logging.info(test)
     
 
