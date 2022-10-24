@@ -7,8 +7,8 @@ from os import system
 
 def get_template(env):
 
-    system("ls")
-    system("pwd")
+    logging.info(system("ls"))
+    logging.info(system("pwd"))
 
     ## Open up our yaml file which will map any services depending on the environment.
     with open('envConfigValues.yaml', 'r') as file:
