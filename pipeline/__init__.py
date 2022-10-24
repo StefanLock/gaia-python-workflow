@@ -20,7 +20,7 @@ def get_template(env):
         config.write(f)
     
     contents = config.read()
-    logging.info(contents)
+    print(contents)
     
     config.close()
 
