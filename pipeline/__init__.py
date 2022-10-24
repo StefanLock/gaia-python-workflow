@@ -28,7 +28,11 @@ def get_template(env):
 
 
 def main():
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(
+        format="%(asctime)s %(levelname)-8s %(message)s",
+        level=logging.INFO,
+        datefmt="%Y-%m-%d %H:%M:%S",
+    )
     # Instead of sdk.InputType.TextFieldInp you can also use sdk.InputType.TextAreaInp
     # for a text area or sdk.InputType.BoolInp for boolean input.
     argParam = sdk.Argument("Type in your environment:", sdk.InputType.TextFieldInp, "environment")
