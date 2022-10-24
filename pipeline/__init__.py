@@ -6,7 +6,7 @@ from os import system
 
 def get_template(env):
     ## Open up our yaml file which will map any services depending on the environment.
-    with open('envConfigValues.yaml', 'r') as file:
+    with open('./envConfigValues.yaml', 'r') as file:
         svc_conf = yaml.safe_load(file)
     
     logging.info("Gathering contents for our config file.")
@@ -45,5 +45,5 @@ def main():
     # for a text area or sdk.InputType.BoolInp for boolean input.
     argParam = sdk.Argument("Type in your environment:", sdk.InputType.TextFieldInp, "environment")
     configjob = sdk.Job("Generating config", "Creating the config", get_template, None, [argParam])
-    printjob = sdk.Job("Getting config contents", "Printing config", show_new_config, None, [argParam])
+    printjob = sdk.Job("Getting config contents", "Printing config", show_new_config, ["Generating config"], [argParam])
     sdk.serve([configjob, printjob])
