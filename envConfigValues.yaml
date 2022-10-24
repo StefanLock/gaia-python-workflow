@@ -1,0 +1,18 @@
+---
+dev:
+  monitoring-server: dev-grafana.com
+  key-store:  dev-vault.com
+  web-service-frontend: dev-frontend.com
+  db-service-backend: dev-db.com
+
+staging:
+  monitoring-server: staging-grafana.com
+  key-store:  staging-vault.com
+  web-service-frontend: staging-frontend.com
+  db-service-backend: staging-db.com
+
+prod:
+  monitoring-server: prod-grafana.com
+  key-store:  prod-vault.com
+  web-service-frontend: prod-frontend.com
+  db-service-backend: prod-db.com
