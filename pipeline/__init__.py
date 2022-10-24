@@ -19,6 +19,9 @@ def get_template(env):
     for f in mylist:
         config.write(f)
     
+    contents = config.read()
+    logging.info(contents)
+    
     config.close()
 
 
