@@ -6,7 +6,7 @@ from os import system
 
 def get_template(env):
     ## Open up our yaml file which will map any services depending on the environment.
-    with open('./envConfigValues.yaml', 'r') as file:
+    with open('config/envConfigValues.yaml', 'r') as file:
         svc_conf = yaml.safe_load(file)
     
     logging.info("Gathering contents for our config file.")
