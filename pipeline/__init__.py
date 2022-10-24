@@ -5,6 +5,8 @@ import logging
 
 def get_template(env):
 
+    env = env.key
+
     mylist = f"""
         monitoring-server: {env}-grafana.com
         key-store:  {env}-vault.com
