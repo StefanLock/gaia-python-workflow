@@ -1,3 +1,6 @@
+from asyncore import write
+from distutils.command.config import config
+from fileinput import close
 import sys
 from gaiasdk import sdk
 import logging
@@ -6,40 +9,20 @@ import yaml
 import os
 
 def get_template(env):
-    os.listdir()
 
-    ## Open up our yaml file which will map any services depending on the environment.
-    with open('envConfigValues.yaml', 'r') as file:
-        svc_conf = yaml.safe_load(file)
+    mylist = [
+        f"monitoring-server: {env}-grafana.com",
+        f"key-store:  {env}-vault.com",
+        f"web-service-frontend: {env}-frontend.com",
+        f"db-service-backend: {env}-db.com"
+    ]
+
+    config= open("config.yaml","a+")
+
+    for f in mylist:
+        config.write(f)
     
-    logging.info("Gathering contents for our config file.")
-    ## Pulling the values from the service discovery yaml and assigning them to variables.
-    monitoringserver = svc_conf[env]['monitoring-server']
-    keystore = svc_conf[env]['key-store']
-    webservicefrontend = svc_conf[env]['web-service-frontend']
-    dbservicebackend = svc_conf[env]['db-service-backend']
-
-    ## Load the templates directory.
-    file_loader = FileSystemLoader('templates')
-    ## Create our Jinja environment
-    jinja_env = Environment(loader=file_loader)
-    ## Get our template config file.
-    template = jinja_env.get_template("config.yaml")
-    ## Create the config file using are variables from the service-discovery yaml.
-    outputText = template.render(
-        monitoringserver = monitoringserver,
-        keystore = keystore,
-        webservicefrontend = webservicefrontend,
-        dbservicebackend = dbservicebackend
-    )
-
-    ## Write the new file
-    f = open(f"output/{env}Config.yaml", "w")
-    f.write(outputText)
-    f.close()
-
-def show_new_config(env):
-    system(f"cat output/{env}Config.yaml")
+    config.close()
 
 
 def main():
@@ -48,5 +31,4 @@ def main():
     # for a text area or sdk.InputType.BoolInp for boolean input.
     argParam = sdk.Argument("Type in your environment:", sdk.InputType.TextFieldInp, "environment")
     configjob = sdk.Job("Generating config", "Creating the config", get_template, None, [argParam])
-    printjob = sdk.Job("Getting config contents", "Printing config", show_new_config, ["Generating config"])
-    sdk.serve([configjob, printjob])
+    sdk.serve([configjob])

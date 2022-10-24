@@ -1,4 +1,0 @@
-monitoring-server: {{ monitoringserver }}
-key-store:  {{ keystore }}
-web-service-frontend: {{ webservicefrontend }}
-db-service-backend: {{ dbservicebackend }}
