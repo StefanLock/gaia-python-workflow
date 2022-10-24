@@ -5,13 +5,11 @@ import logging
 
 def get_template(env):
 
-    mylist = (
-        f"""
+    mylist = f"""
         monitoring-server: {env}-grafana.com
         key-store:  {env}-vault.com
         web-service-frontend: {env}-frontend.com
         db-service-backend: {env}-db.com"""
-    )
 
     try:
         config= open("/tmp/config.yaml","a+")
