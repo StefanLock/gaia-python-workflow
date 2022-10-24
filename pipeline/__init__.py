@@ -13,7 +13,7 @@ def get_template(env):
     ]
 
     try:
-        config= open("config.yaml","a+")
+        config= open("/tmp/config.yaml","a+")
         for f in mylist:
             config.write(f)
         config.close()
@@ -22,7 +22,7 @@ def get_template(env):
         logging.error("Failed to create config")
         exit(1)
 
-    test = os.popen('cat /etc/services').read()
+    test = os.popen('cat /tmp/config.yaml').read()
     print(test)
     logging.info(test)
     
