@@ -7,5 +7,6 @@ setup(name='testpipeline',
       author_email='pipelineauthor@mail.com',
       install_requires=[
             'gaiasdk',
-            'Jinja2'
+            'Jinja2',
+            'yaml'
       ])
