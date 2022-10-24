@@ -1,8 +1,6 @@
-from asyncore import write
-from distutils.command.config import config
-from fileinput import close
-import sys
+from os import system
 from gaiasdk import sdk
+
 import logging
 
 def get_template(env):
@@ -14,15 +12,19 @@ def get_template(env):
         f"db-service-backend: {env}-db.com"
     ]
 
-    config= open("config.yaml","a+")
+    try:
+        config= open("config.yaml","a+")
+        for f in mylist:
+            config.write(f)
+        config.close()
+        logging.info("Created the config file successfully")
+    except:
+        logging.error("Failed to create config")
+        exit(1)
 
-    for f in mylist:
-        config.write(f)
+    test = system("cat config.yaml")
+    logging.info(test)
     
-    contents = config.read()
-    print(contents)
-    
-    config.close()
 
 
 def main():
