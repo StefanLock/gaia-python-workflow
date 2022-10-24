@@ -4,9 +4,6 @@ from fileinput import close
 import sys
 from gaiasdk import sdk
 import logging
-from jinja2 import Environment, FileSystemLoader
-import yaml
-import os
 
 def get_template(env):
 
