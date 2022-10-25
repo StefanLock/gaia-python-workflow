@@ -31,7 +31,7 @@ def get_template(args):
                     config.write(my_config)
                     # for f in my_config:
                     #     config.write(f)
-                    # config.close()
+                    config.close()
                     logging.info("Created the config file successfully")
                 except:
                     logging.error("Failed to create config")
@@ -50,7 +50,7 @@ def main():
         datefmt="%Y-%m-%d %H:%M:%S",
     )
     # Define our argument input
-    argParam = sdk.Argument("Type in your environment, Must be dev, staging or prod(Lowercase):", sdk.InputType.TextFieldInp, "Environment")
+    argParam = sdk.Argument("Type in your environment. It must be dev, staging or prod (Lowercase):", sdk.InputType.TextFieldInp, "Environment")
     # Configure our job with the args.
     configjob = sdk.Job("Generating config", "Creating the config", get_template, None, [argParam])
     # Run the job
