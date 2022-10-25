@@ -11,11 +11,11 @@ def get_template(args):
         else:
             logging.info(f"Environment selected: {x.value}")
 
-            mylist = f"""
-                monitoring-server: {x.value}-grafana.com
-                key-store:  {x.value}-vault.com
-                web-service-frontend: {x.value}-frontend.com
-                db-service-backend: {x.value}-db.com"""
+            mylist = """
+                monitoring-server: {env}-grafana.com
+                key-store:  {env}-vault.com
+                web-service-frontend: {env}-frontend.com
+                db-service-backend: {env}-db.com""".format(env=x.value)
 
             try:
                 config= open("/tmp/config.yaml","a+")
