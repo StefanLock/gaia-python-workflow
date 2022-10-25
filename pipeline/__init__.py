@@ -9,7 +9,7 @@ def get_template(args):
         if x == "":
             pass
         else:
-            logging.info(x.value)
+            logging.info(f"Environment selected: {x.value}")
 
             mylist = f"""
                 monitoring-server: {x.value}-grafana.com
@@ -29,6 +29,7 @@ def get_template(args):
 
             test = os.popen('cat /tmp/config.yaml').read()
             logging.info(test)
+            os.remove('/tmp/config.yaml')
 
 def main():
     logging.basicConfig(
