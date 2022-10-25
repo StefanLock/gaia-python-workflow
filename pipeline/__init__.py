@@ -3,15 +3,15 @@ from gaiasdk import sdk
 
 import logging
 
-def get_template(env):
+def get_template(args):
 
-    logging.info(env)
+    logging.info(args)
 
     mylist = f"""
-        monitoring-server: {env}-grafana.com
-        key-store:  {env}-vault.com
-        web-service-frontend: {env}-frontend.com
-        db-service-backend: {env}-db.com"""
+        monitoring-server: {args}-grafana.com
+        key-store:  {args}-vault.com
+        web-service-frontend: {args}-frontend.com
+        db-service-backend: {args}-db.com"""
 
     try:
         config= open("/tmp/config.yaml","a+")
@@ -26,8 +26,6 @@ def get_template(env):
     test = os.popen('cat /tmp/config.yaml').read()
     print(test)
     logging.info(test)
-    
-
 
 def main():
     logging.basicConfig(
@@ -37,6 +35,6 @@ def main():
     )
     # Instead of sdk.InputType.TextFieldInp you can also use sdk.InputType.TextAreaInp
     # for a text area or sdk.InputType.BoolInp for boolean input.
-    argParam = sdk.Argument("Type in your environment:", sdk.InputType.TextFieldInp, "environment")
+    argParam = sdk.Argument("Type in your argsironment:", sdk.InputType.TextFieldInp, "argsironment")
     configjob = sdk.Job("Generating config", "Creating the config", get_template, None, [argParam])
     sdk.serve([configjob])
