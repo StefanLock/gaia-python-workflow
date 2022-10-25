@@ -29,8 +29,6 @@ def get_template(args):
                 try:
                     config= open("/tmp/config.yaml","a+")
                     config.write(my_config)
-                    # for f in my_config:
-                    #     config.write(f)
                     config.close()
                     logging.info("Created the config file successfully")
                 except:
