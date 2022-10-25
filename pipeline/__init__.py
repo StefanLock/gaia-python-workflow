@@ -5,6 +5,10 @@ import logging
 
 def get_template(args):
 
+    for x in args:
+        logging.info(x.key)
+        logging.info(x.value)
+
     logging.info(args)
 
     mylist = f"""
@@ -35,6 +39,6 @@ def main():
     )
     # Instead of sdk.InputType.TextFieldInp you can also use sdk.InputType.TextAreaInp
     # for a text area or sdk.InputType.BoolInp for boolean input.
-    argParam = sdk.Argument("Type in your argsironment:", sdk.InputType.TextFieldInp, "argsironment")
+    argParam = sdk.Argument("Type in your environment:", sdk.InputType.TextFieldInp, "argsironment")
     configjob = sdk.Job("Generating config", "Creating the config", get_template, None, [argParam])
     sdk.serve([configjob])
