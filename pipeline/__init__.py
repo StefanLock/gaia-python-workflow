@@ -41,7 +41,7 @@ def get_template(args):
 
 def s3_Upload(args):
     for key in args:
-        logging.info(key)
+        logging.info(key.value)
     
 
 def main():
