@@ -44,9 +44,6 @@ def s3_Upload(args):
     ACCESS_KEY=args[0].value
     SECRET_KEY=args[1].value
 
-    logging.info(ACCESS_KEY)
-    logging.info(SECRET_KEY)
-    
     client = boto3.client(
         's3',
         aws_access_key_id=ACCESS_KEY,
