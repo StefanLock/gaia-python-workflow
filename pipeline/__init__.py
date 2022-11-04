@@ -39,9 +39,9 @@ def get_template(args):
             config_read = os.popen('cat /tmp/config.yaml').read()
             logging.info(config_read)
 
-    def s3Upload(args):
-        for key in args:
-            print(key)
+def s3_Upload(args):
+    for key in args:
+        print(key)
     
 
 def main():
@@ -58,6 +58,6 @@ def main():
     # Configure our job with the args.
     configjob = sdk.Job("Generating config", "Creating the config", get_template, None, [argParam])
     # Configure our job with the credentials args.
-    uploadjob = sdk.Job("Uploading to S3", "Upload to S3", s3Upload, ["configJob"], [accessKey, secretAccessKey])
+    uploadjob = sdk.Job("Uploading to S3", "Upload to S3", s3_Upload, ['configjob'], [accessKey, secretAccessKey])
     # Run the job
     sdk.serve([configjob, uploadjob])
