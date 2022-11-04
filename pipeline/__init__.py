@@ -58,6 +58,6 @@ def main():
     # Configure our job with the args.
     configjob = sdk.Job("Generating config", "Creating the config", get_template, None, [argParam])
     # Configure our job with the credentials args.
-    uploadjob = sdk.Job("Uploading to S3", "Upload to S3", s3_Upload, None, [accessKey, secretAccessKey])
+    uploadjob = sdk.Job("Uploading to S3", "Upload to S3", s3_Upload, ['Generating config'], [accessKey, secretAccessKey])
     # Run the job
     sdk.serve([configjob, uploadjob])
