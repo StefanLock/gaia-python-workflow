@@ -41,17 +41,23 @@ def get_template(args):
             logging.info(config_read)
 
 def s3_Upload(args):
+    # define the credentials for AWS that are pulled from Gaia vault.
     ACCESS_KEY=args[0].value
     SECRET_KEY=args[1].value
 
+    # configure AWS client.
     client = boto3.client(
         's3',
         aws_access_key_id=ACCESS_KEY,
         aws_secret_access_key=SECRET_KEY,
         region_name = 'eu-west-2')
 
+    # Read our config and push it to S3.
     with open("/tmp/config.yaml", "rb") as f:
         client.upload_fileobj(f, "projectlock-gaia-bucket", "config.yaml")
+    
+    # Clean up the config file
+    os.remove("/tmp/config.yaml")
     
 
 def main():
