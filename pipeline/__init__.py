@@ -1,6 +1,7 @@
 # Imports
 import os, logging
 from gaiasdk import sdk
+import boto3
 
 # Funtion to generate a basic config file.
 def get_template(args):
@@ -37,8 +38,11 @@ def get_template(args):
             # read the file to the logs for us to check it out.
             config_read = os.popen('cat /tmp/config.yaml').read()
             logging.info(config_read)
-            # remove that temoporary file.
-            os.remove('/tmp/config.yaml')
+
+    def s3Upload(args):
+        for key in args:
+            print(key)
+    
 
 def main():
     # Configure logging.
@@ -49,7 +53,11 @@ def main():
     )
     # Define our argument input
     argParam = sdk.Argument("Type in your environment. It must be dev, staging or prod (Lowercase):", sdk.InputType.TextFieldInp, "Environment")
+    accessKey = sdk.Argument("", sdk.InputType.VaultInp, "Access Key ID")
+    secretAccessKey = sdk.Argument("", sdk.InputType.VaultInp, "Secret access key")
     # Configure our job with the args.
     configjob = sdk.Job("Generating config", "Creating the config", get_template, None, [argParam])
+    # Configure our job with the credentials args.
+    uploadjob = sdk.Job("Uploading to S3", "Upload to S3", s3Upload, ["configJob"], [accessKey, secretAccessKey])
     # Run the job
     sdk.serve([configjob])

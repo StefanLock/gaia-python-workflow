@@ -6,5 +6,6 @@ setup(name='testpipeline',
       author='pipelineauthor',
       author_email='pipelineauthor@mail.com',
       install_requires=[
-            'gaiasdk'
+            'gaiasdk',
+            'boto3'
       ])
