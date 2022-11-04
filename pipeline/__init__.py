@@ -60,4 +60,4 @@ def main():
     # Configure our job with the credentials args.
     uploadjob = sdk.Job("Uploading to S3", "Upload to S3", s3Upload, ["configJob"], [accessKey, secretAccessKey])
     # Run the job
-    sdk.serve([configjob])
+    sdk.serve([configjob, uploadjob])
