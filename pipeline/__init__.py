@@ -1,4 +1,5 @@
 # Imports
+from ast import arg
 import os, logging
 from gaiasdk import sdk
 import boto3
@@ -40,8 +41,8 @@ def get_template(args):
             logging.info(config_read)
 
 def s3_Upload(args):
-    for key in args:
-        logging.info(key.value)
+    logging.info(args[0].value)
+    logging.info(args[1].value)
     
 
 def main():
