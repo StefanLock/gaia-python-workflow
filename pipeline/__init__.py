@@ -41,8 +41,14 @@ def get_template(args):
             logging.info(config_read)
 
 def s3_Upload(args):
-    logging.info(args[0].value)
-    logging.info(args[1].value)
+    client = boto3.Session(
+        's3',
+        aws_access_key_id=args[0].value,
+        aws_secret_access_key=args[1].value,
+        region_name = 'eu-west-2')
+
+    with open("/tmp/config.yaml", "rb") as f:
+        client.upload_fileobj(f, "projectlock-gaia-bucket", "config.yaml")
     
 
 def main():
