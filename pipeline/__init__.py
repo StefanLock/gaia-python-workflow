@@ -51,14 +51,17 @@ def s3_Upload(args):
         aws_access_key_id=ACCESS_KEY,
         aws_secret_access_key=SECRET_KEY,
         region_name = 'eu-west-2')
-
-    # Read our config and push it to S3.
-    with open("/tmp/config.yaml", "rb") as f:
-        client.upload_fileobj(f, "projectlock-gaia-bucket", "config.yaml")
+    try:   
+        # Read our config and push it to S3.
+        with open("/tmp/config.yaml", "rb") as f:
+            client.upload_fileobj(f, "projectlock-gaia-bucket", "config.yaml")
+        logging.info("File uploaded to S3")
+    except:
+        logging.error("Failed S3 upload")
+        exit(1)
     
     # Clean up the config file
     os.remove("/tmp/config.yaml")
-    
 
 def main():
     # Configure logging.
